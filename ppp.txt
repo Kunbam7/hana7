@@ -18,4 +18,3 @@ something working
 regist
 pr test
 patch
-xxx
