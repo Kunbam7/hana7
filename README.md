@@ -6,7 +6,7 @@
 
 1. something
 2. diff
-3, things
+3. things
 
 ### 0.1.1
 
