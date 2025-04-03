@@ -24,4 +24,3 @@ console.log(3, userName);
 // + 모듈 스코프라는것도 있음
 
 console.log('-----------------', typeof userName);
- 
