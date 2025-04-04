@@ -44,3 +44,30 @@ const unDef__nil = unDef == nil;
 const unDef___nil = unDef === nil;
 console.log("🚀 ~ unDef__nil:", unDef__nil);
 console.log("🚀 ~ unDef___nil:", unDef___nil);
+console.log('=========================');
+
+const hong = {id:1, name:'Hong'};       //객체타입
+let kim = {id:Symbol(), name:'Kim'};    //
+//hoist 때문에 kim이 먼저선언됨
+console.log(hong === kim);
+kim = hong;
+console.log(hong === kim);
+
+const o1 = new Object();
+const o2 = {} ;
+console.log('o1 == o2', o1==o2);
+
+const nStr = n.toString()
+const nStr2 = new Number(n).toString();
+console.log("🚀 ~ nStr:", nStr, nStr2, typeof n);
+
+const nStr16 = n.toString(16);
+console.log("🚀 ~ nStr16:", nStr16);
+const nStr16d = parseInt(nStr16, 16);
+console.log("🚀 ~ nStr16d:", nStr16d);
+
+console.log('-----------------------------');
+const d1 = Date();
+const d2 = new Date();
+console.log("🚀 d1 == d2", d1 == d2);
+
