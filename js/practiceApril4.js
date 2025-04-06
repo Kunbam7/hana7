@@ -1,26 +1,49 @@
 //for 구문 출력문제
-for(let i = 1; i < 11; i+=1) {
+for(let i = 1; i < 11; i +=1 ) {
     console.log(i/10);
 }
 console.log('==================');
 
 //1 ~ 10 제곱근 소수점 3자리
-for(let i = 1; i < 11; i+=1) {
+for(let i = 1; i < 11; i += 1) {
     let s = Math.sqrt(i);
     if (!Number.isInteger(s)){
-        results = Math.trunc(1000*s);
-        console.log(results/1000);
+        const results = Math.round(1000*s);
+        console.log(i, results/1000);
     }
 }
 console.log('==================');
 
 //요일 출력
+const WEEK_NAMES = '일월화수목금토';
+const today = new Date();
+//today.getDay();
+//console.log(today.getDay());
 
+console.log('오늘은 ', WEEK_NAMES[today.getDay()]+'요일', '입니다');
 console.log('==================');
 
 //addPoints 함수
 function addPoints(a, b) {
-
+    let sa = a;
+    let ad = 1;
+    let sb = b;
+    let bd = 1;
+    
+    while(!Number.isInteger(sa)) {
+        sa = sa * (10 ** ad);
+        if(Number.isInteger(sa)) break;
+        else                     ad += 1;
+    }
+    
+    while(!Number.isInteger(sb)) {
+        sb = sb * (10 ** bd);
+        if(Number.isInteger(sb)) break;
+        else                     bd += 1;
+    }
+    
+    if(ad > bd) console.log((a + b).toFixed(ad));
+    else        console.log((a + b).toFixed(bd));
 }
 addPoints(0.21354, 0.1)     // 0.31354
 addPoints(0.14, 0.28)       // 0.42
