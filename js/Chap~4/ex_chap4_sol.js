@@ -13,7 +13,6 @@ for(let i = 1; i <= 10; i += 1) {
 console.log('==================');
 
 //요일 출력
-
 // new는 연산자(operator)
 const today = new Date().getDay();
 let weekName = '일월화수목금토'[today]; //더 단순화
@@ -53,6 +52,7 @@ function addPoints(a,b) {
     console.log(cal1);
 
     //way 2
+    // 문자계산은 부담이 큼 -> 가능한한 숫자로만 계산하는 방법
     const p = 10 ** 10;
     const ai = a * p;
     const bi = b * p;
@@ -60,7 +60,7 @@ function addPoints(a,b) {
     console.log(cal2);
 }
 
-//wawy 3
+//way 3
 function addPoints3(... args) {
     p = 10 ** 10;
     let ret = 0;
@@ -100,3 +100,23 @@ addPoints(0.34, 0.226)      // 0.566
 addPoints(10.34, 200.226)   // 210.566
 addPoints(0.143, -10.28)    // -10.137
 addPoints(0.143, -10)       // -9.857
+
+//소수베열의 평균의 소수점 2자리 계산
+const prices = [10.34, 'xxx', 5.678, null, 20.9, 1.005, 0, 18, undefined, 0.5];
+//null은 숫자로치면 0
+
+const P = 10 * 10;
+let sum = 0;
+let cnt = 0;
+
+for(const n of prices) {
+    if(isNaN(n) || n == null) continue;
+    cnt += 1;
+    sum += Math.trunc(n * P);
+}
+//const avg = (sum / (cnt * p)).toFixed(2);
+
+//toFix안쓰고 해결하기?
+const avg = Math.trunc((sum / (cnt * P)) * 100) / 100;
+
+console.log(avg);
