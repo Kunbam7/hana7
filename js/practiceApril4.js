@@ -30,6 +30,7 @@ function addPoints(a, b) {
     let sb = b;
     let bd = 1;
     
+    //String으로 받아진듯? 근데 왜...? 이거 계산 인테자로 된거 아닌가;
     while(!Number.isInteger(sa)) {
         sa = sa * (10 ** ad);
         if(Number.isInteger(sa)) break;
@@ -38,9 +39,11 @@ function addPoints(a, b) {
     
     while(!Number.isInteger(sb)) {
         sb = sb * (10 ** bd);
+        //console.log(bd);
         if(Number.isInteger(sb)) break;
         else                     bd += 1;
     }
+    //console.log(sb);
     
     if(ad > bd) console.log((a + b).toFixed(ad));
     else        console.log((a + b).toFixed(bd));
