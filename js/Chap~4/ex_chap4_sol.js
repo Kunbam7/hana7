@@ -103,9 +103,9 @@ addPoints(0.143, -10)       // -9.857
 
 //소수베열의 평균의 소수점 2자리 계산
 const prices = [10.34, 'xxx', 5.678, null, 20.9, 1.005, 0, 18, undefined, 0.5];
-//null은 숫자로치면 0
+//null은 숫자로치면 0 -> isNaN true 나옴
 
-const P = 10 * 10;
+const P = 10 ** 10;
 let sum = 0;
 let cnt = 0;
 
@@ -114,9 +114,9 @@ for(const n of prices) {
     cnt += 1;
     sum += Math.trunc(n * P);
 }
-//const avg = (sum / (cnt * p)).toFixed(2);
+c//onst avg = (sum / (cnt * p)).toFixed(2);
 
-//toFix안쓰고 해결하기?
+//toFixed안쓰고 해결하기
 const avg = Math.trunc((sum / (cnt * P)) * 100) / 100;
 
 console.log(avg);
