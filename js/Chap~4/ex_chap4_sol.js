@@ -1,13 +1,13 @@
 //for 구문 출력문제
 for (let i = 0.1; i <= 1; i = i + 0.1) {
-    console.log(i.toFixed(1));
+    console.log(+i.toFixed(1));
 }
 console.log('==================');
 
 //1 ~ 10 제곱근 소수점 3자리
 for(let i = 1; i <= 10; i += 1) {
     const root = Math.sqrt(i);
-    if(root % 1) console.log(i, root.toFixed(3));
+    if(root % 1) console.log(+i, root.toFixed(3));
     //console.log(root);
 }
 console.log('==================');
@@ -114,7 +114,7 @@ for(const n of prices) {
     cnt += 1;
     sum += Math.trunc(n * P);
 }
-c//onst avg = (sum / (cnt * p)).toFixed(2);
+//onst avg = (sum / (cnt * p)).toFixed(2);
 
 //toFixed안쓰고 해결하기
 const avg = Math.trunc((sum / (cnt * P)) * 100) / 100;
