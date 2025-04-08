@@ -7,7 +7,7 @@ console.log('==================');
 //1 ~ 10 제곱근 소수점 3자리
 for(let i = 1; i <= 10; i += 1) {
     const root = Math.sqrt(i);
-    if(root % 1) console.log(+i, root.toFixed(3));
+    if(root % 1) console.log(i, root.toFixed(3));
     //console.log(root);
 }
 console.log('==================');
