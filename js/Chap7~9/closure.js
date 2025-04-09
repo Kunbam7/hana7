@@ -97,3 +97,27 @@ function factorialTCO(n, acc = 1) {
 const ftco3 = factorialTCO(3);
 console.log(ftco3);
 
+//closure usecase : memorized function
+const memoryTable = {};
+function memofactorial(n) {
+    if(n === 1) return 1;
+    return  memoryTable[n] || (memoryTable[n] = n * factorial(n - 1));
+}
+const memoCal = memofactorial(7);
+console.log(memoryTable);
+console.log(memoCal);
+
+
+function memorized(fn) {
+    const memoryTable = {};
+    return function B(k) {
+        return  memoryTable[k] ?? (memoryTable[k] = fn(k));
+    };
+}
+
+const memorizedFactorial = memorized(function A(n) {
+    if(n === 1) return 1;
+    return n * memorizedFactorial(n - 1);
+});
+
+console.log(memorizedFactorial(3));
