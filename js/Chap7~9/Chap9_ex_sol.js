@@ -25,15 +25,26 @@ console.log(maTco10);
 
 console.log('=========================ex2_피보나치수열');
 // loop
-// function lopFibonacci(n) {
-//     let cal = 0;
-//     let memory = 0;
-//     for(let i = 1; i < n; n += 1) {
+// loop
+function loopFibonacci(n) {
+    if( n <= 1) {
+        return n;
+    }
+    else {
+        let cal1 = 0;
+        let cal2 = 1;
+        let memory = 0;
         
-//     }
-//     return cal;
-// }
-// console.log(lopFibonacci(5));
+        for(let i = 2; i <= n; i += 1) {
+            memory = cal1 + cal2;
+            cal1 = cal2;
+            cal2 = memory;
+        }
+        return memory;
+    }
+}
+const loopCal = loopFibonacci(5);
+console.log(loopCal);
 
 // 재귀함수
 function recurFibonacci(n) {
