@@ -24,10 +24,8 @@ const maTco10 = makeArrayTCO(10);
 console.log(maTco10);
 
 console.log('=========================ex2_피보나치수열');
-
 // loop
-
-let loopRunCnt = 0;
+let loopRunCnt = 0;             //성능 측정
 function loopFibonacci(n) {
     if( n <= 1) {
         return n;
@@ -53,8 +51,6 @@ const loopCal = loopFibonacci(7);
 console.log(loopCal);
 
 // 재귀함수, 선언형 프로그램, 풀스택을 쌓아가서 loop대비 성능 떨어짐
-
-// 측정
 let recurRunCnt = 0;
 function recurFibonacci(n) {
     recurRunCnt += 1;
@@ -66,10 +62,10 @@ console.log(recurCal);
 
 // memorized
 let memoRunCnt = 0;
-const memoFibonacci = memoized(function (n) {
+const memoFibonacci = memoized(function(n) {
     memoRunCnt += 1;
     if( n <= 1)  return n;
-    return memoFibonacci(n - 2) + memoFibonacci(n - 1)
+    return memoFibonacci(n - 2) + memoFibonacci(n - 1);
 });
 
 function memoized(fn) {
@@ -80,7 +76,6 @@ function memoized(fn) {
 }
 const memoCal = memoFibonacci(7);
 console.log(memoCal);
-
 
 console.log('loop: ', loopRunCnt);
 console.log('recu: ', recurRunCnt);
