@@ -24,8 +24,10 @@ const maTco10 = makeArrayTCO(10);
 console.log(maTco10);
 
 console.log('=========================ex2_피보나치수열');
+
 // loop
-// loop
+
+let loopRunCnt = 0;
 function loopFibonacci(n) {
     if( n <= 1) {
         return n;
@@ -33,45 +35,53 @@ function loopFibonacci(n) {
     else {
         let cal1 = 0;
         let cal2 = 1;
-        let memory = 0;
         
         for(let i = 2; i <= n; i += 1) {
-            memory = cal1 + cal2;
-            cal1 = cal2;
-            cal2 = memory;
+            loopRunCnt += 1;
+            // way1, 명령형 프로그램
+            // let memory = cal1;
+            // cal1 = cal2;
+            // cal2 = memory + cal2;
+
+            // way2
+            [cal1, cal2] = [cal2, cal1 + cal2];
         }
-        return memory;
+        return cal2;
     }
 }
-const loopCal = loopFibonacci(5);
+const loopCal = loopFibonacci(7);
 console.log(loopCal);
 
-// 재귀함수
+// 재귀함수, 선언형 프로그램, 풀스택을 쌓아가서 loop대비 성능 떨어짐
+
+// 측정
+let recurRunCnt = 0;
 function recurFibonacci(n) {
+    recurRunCnt += 1;
     if(n <= 1)  return n;
-    return recurFibonacci(n-1) + recurFibonacci(n-2);
+    return recurFibonacci(n - 2) + recurFibonacci( n - 1);
 }
 const recurCal = recurFibonacci(7);
 console.log(recurCal);
 
 // memorized
-const memoryTable = {};
-function memoFibonacci1(n) {
-    if(n <= 1)  return n;
-    return memoryTable[n] || (memoryTable[n] = recurFibonacci(n-1) + recurFibonacci(n-2));
-}
-const memoCal1 = memoFibonacci1(7);
-console.log(memoCal1);
+let memoRunCnt = 0;
+const memoFibonacci = memoized(function (n) {
+    memoRunCnt += 1;
+    if( n <= 1)  return n;
+    return memoFibonacci(n - 2) + memoFibonacci(n - 1)
+});
 
-function memory(fn) {
-    const memoryTable = {};
-    return function B(k) {
-        return  memoryTable[k] ?? (memory[k] = fn(k));
+function memoized(fn) {
+    const cashe = {};
+    return function (k) {
+        return  cashe[k] || (cashe[k] = fn(k));
     };
 }
-const memoFibonacci2 = memory(function A(n) {
-    if(n <= 1) return n;
-    return memoFibonacci2(n-1) + memoFibonacci2(n-2);
-});
-const memoCal2 = memoFibonacci2(7);
-console.log(memoCal2);
+const memoCal = memoFibonacci(7);
+console.log(memoCal);
+
+
+console.log('loop: ', loopRunCnt);
+console.log('recu: ', recurRunCnt);
+console.log('memo: ', memoRunCnt);

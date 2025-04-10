@@ -6,6 +6,13 @@ function makeArray(... n) {
 const result_makeArray = makeArray(5);
 console.log(result_makeArray);
 
+function makeArrayA(n) {
+    if(n === 1) return [1];
+    return [n, ... makeArrayA(n - 1)];
+}
+const result = makeArrayA(5);
+console.log(result);
+
 
 console.log('=========================ex2_피보나치수열');
 // loop
