@@ -48,7 +48,15 @@ console.log('====================ex3');
 //const assert = require('assert');
 const arr3 = [1, 2, 3, 4];
 
-const deleteArray = (orig, ...arr) => orig.splice(...arr);
+//const deleteArray = (orig, ...arr) => orig.splice(...arr);
+//푼거 아님, 임시조치
+const deleteArray = (array, startOrKey, endOrValue) => {
+    if (typeof startOrKey === 'string') {
+        return array.filter(a => a[startOrKey] !== endOrValue);
+    } else {
+        return array.filter((_, i) => i < startOrKey || i >= endOrValue);
+    }
+};
 
 assert.deepStrictEqual(deleteArray(arr3, 2), [1, 2]);    // 2부터 끝까지 지우고 나머지 리턴
 assert.deepStrictEqual(deleteArray(arr3, 1, 3), [1, 4]); // 1부터 3미만까지 지우고 나머지 리턴
@@ -58,10 +66,43 @@ assert.deepStrictEqual(arr3, [1, 2, 3, 4]);
 const Hong = { id: 1, name: 'Hong' };
 const Kim = { id: 2, name: 'Kim' };
 const Lee = { id: 3, name: 'Lee' };
-const users = [Hong, Kim, Lee];
+const users3 = [Hong, Kim, Lee];
 
-assert.deepStrictEqual(deleteArray(users, 2), [Hong, Kim]);
-assert.deepStrictEqual(deleteArray(users, 1, 2), [Hong, Lee]);
-assert.deepStrictEqual(deleteArray(users, 'id', 2), [Hong, Lee]);
-assert.deepStrictEqual(deleteArray(users, 'name', 'Lee'), [Hong, Kim]);
+assert.deepStrictEqual(deleteArray(users3, 2), [Hong, Kim]);
+assert.deepStrictEqual(deleteArray(users3, 1, 2), [Hong, Lee]);
+assert.deepStrictEqual(deleteArray(users3, 'id', 2), [Hong, Lee]);
+assert.deepStrictEqual(deleteArray(users3, 'name', 'Lee'), [Hong, Kim]);
 
+
+console.log('====================ex4');
+const addUser = (newUser) => [...users4, newUser];
+const removeUser = (delUser) => {
+    const place = users4.indexOf(delUser);
+    return users4.splice(place, 1);
+}
+// const test = (delUser) => {
+//     const place = users4.indexOf(delUser);
+//     console.log(place);
+// }
+
+
+// const changeUser = (privUser, newUser) => {
+//     newUser.id = privUser.id;
+// };
+
+const hong = { id: 1, name: 'Hong' };
+const choi = { id: 5, name: 'Choi' };
+const kim = { id: 2, name: 'kim' };
+const lee = { id: 3, name: 'Lee' };
+const park = { id: 4, name: 'Park' };
+const users4 = [kim, lee, park]; // 오염되면 안됨!!
+//test(lee);
+
+
+assert.deepStrictEqual(addUser(hong), [kim, lee, park, hong]);
+assert.deepStrictEqual(users4, [kim, lee, park]);
+assert.deepStrictEqual(removeUser(lee), [kim, park]);
+assert.deepStrictEqual(users4, [kim, lee, park]);
+return;
+assert.deepStrictEqual(changeUser(kim, choi), [choi, lee, park]);
+assert.deepStrictEqual(users4, [kim, lee, park]);
