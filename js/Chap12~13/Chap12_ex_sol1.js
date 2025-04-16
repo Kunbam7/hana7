@@ -95,7 +95,6 @@ const addUser = newUser => [...users4, newUser];
 // const removeUser = delUser => users4.filter({id}) => id !== delUser.id;
 // 단순화
 const removeUser = ({id: pid}) => users4.filter(({id}) => id !== pid);
-
 const changeUser = (from, to) => users4.map(user => user.id === from.id ? to : user);
 
 const hong = { id: 1, name: 'Hong' };
