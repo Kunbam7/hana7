@@ -38,8 +38,11 @@ today3.setFullYear(today3.getFullYear() + 1);
 console.log('today3: ', today3);
 // 유사배열객체  => array, length가 있어서 뽑아내기가 가능
 console.log('NextYear >> ', '일월화수목금토'[today3.getDay()]);
+console.log('Arraytest','test'[2]);
 
 // 4
 const today4 = new Date();
 today4.setDate(today4.getDate() + 100 - 1);
 console.log('today4: ', today4);
+
+
