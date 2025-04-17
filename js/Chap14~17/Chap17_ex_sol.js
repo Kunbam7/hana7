@@ -61,4 +61,4 @@ assert.deepStrictEqual(telfmt('021234567'), '02-123-4567');
 assert.deepStrictEqual(telfmt('0331234567'), '033-123-4567');
 assert.deepStrictEqual(telfmt('15771577'), '1577-1577');
 assert.deepStrictEqual(telfmt('07012341234'), '070-1234-1234');
-// assert.deepStrictEqual(telfmt('050712345678'), '0507-1234-5678');
+assert.deepStrictEqual(telfmt('050712345678'), '0507-1234-5678');
