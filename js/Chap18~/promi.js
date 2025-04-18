@@ -2,10 +2,15 @@ class PromiseX {
     constructor(nbfn) {
         nbfn(this.runSuccess.bind(this), this.runFail.bind(this));
         // return this 생략되있는 형태
+        this.thenFns    // 배열형태
     }
 
     runSuccess(ret) {
-        this.thenFn(ret);
+        this.thenFn(ret);   // shift
+
+        let t;
+        for(const p of this.thenFns)
+            t = tp(t);
     }
 
     runFail(err) {
@@ -14,7 +19,8 @@ class PromiseX {
 
     then(f) {
         console.log('then >> ', f);
-        this.thenFn = f;
+        this.thenFn = f;    // push
+        this.thenFns.push(f);
         return this;
     }
 
