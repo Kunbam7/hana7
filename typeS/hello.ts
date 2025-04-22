@@ -31,7 +31,7 @@ let y: string | number;
 y = x;
 
 let z: string;
-if(x) z = x;     // undefined가 아닌, if구문으로 string으로 줄여짐, if가 type guard
+if(x) z = x;     // undefined가 아닌, if구문으로 string으로 줄여짐, if가 type guard
 
 
 type Member = {

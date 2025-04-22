@@ -73,3 +73,33 @@ function ntfn(this: void, x: string) {
     console.log('tfn', x);
 }
 ntfn('Y');
+
+const a: number[] = [];
+
+interface someInterface {
+    [key: string]: number
+}
+
+
+type IS = {
+    [key: string]: string | number;
+    3: number;
+};
+type IS2 = {
+    [key: number]: string | number;
+    id: number;
+    5: number;
+};
+
+let isobji1: IS = {id: 1, name: 'Hong', 3: 5};
+let isobj2: IS2 = {3: 5, id: 9, 5: 1};
+
+const greeting = (greet: 'Hi' | 'Hello', name: string, age: number) => {
+    console.log(`${greet}~ ${name}, You are ${age}`);
+    return [name, age] as const
+    // return [name, age];
+};
+const gr1 = greeting('Hi', 'Hong', 33);
+console.log('gr1: ', gr1[0]);
+const tup: [string, number] = ['Kim', 55];
+greeting('Hello', ...tup);
