@@ -1,3 +1,4 @@
+
 type TUser = {id : number; name: string};
 
 let hong: TUser = {id: 1, name: 'Hong'};
