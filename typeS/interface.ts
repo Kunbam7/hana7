@@ -39,5 +39,4 @@ typedCallSignature.greeting = (name) => console.log(`Hi, ${name}`);
 
 interface Novel {
     title: string;
-    []
 }
