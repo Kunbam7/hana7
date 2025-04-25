@@ -1,4 +1,4 @@
-class Factory<T> {
+export class Factory<T> {
     protected products: T[];
 
     constructor(product: T) {

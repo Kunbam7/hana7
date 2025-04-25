@@ -1,0 +1,11 @@
+"use strict";
+let xx = { id: 1, name: 'Hong' };
+xx = { id: 2, age: 33 };
+let yy = { id: 11, name: 'Hong', age: 33 };
+// let pp: P = {id: 3};
+let qq = { id: 4, name: 'Q' };
+// type TT = {id: number; name?: string};
+let tt = { id: 1 };
+const typedCallSignature = (input) => input.length;
+typedCallSignature.count = 0;
+typedCallSignature.greeting = (name) => console.log(`Hi, ${name}`);
