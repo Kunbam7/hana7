@@ -20,7 +20,7 @@ interface Dog extends Animal {
 interface Cat extends Animal {
     punch(): void;
 }
-class Retriever implements Dog {
+class Retriever implements Dog {    // interface 특징 활용 -> 다양화
     constructor(public name: string) {}
 }
 
@@ -60,6 +60,14 @@ type T3 = 1 | 2 | 3;
 // type T4 = typeof constCart[keyof typeof constCart]; // [] : key
 type ConstCart = typeof constCart;
 type T4 = ConstCart[keyof ConstCart];
+
+const xCart = {x: 1, y: 'str'} as const;
+type XCart = typeof xCart;
+type 
+
+type Valueof<T> = T[keyof T];
+type t44 = Valueof<typeof ConstCart>;
+type t55 = Valueof<XCart>;
 
 console.log('ex3===============================');
 
