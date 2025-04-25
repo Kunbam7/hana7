@@ -1,3 +1,4 @@
+/*
 function add(a: number, b: number) {
     return a + b;
 }
@@ -103,3 +104,4 @@ const gr1 = greeting('Hi', 'Hong', 33);
 console.log('gr1: ', gr1[0]);
 const tup: [string, number] = ['Kim', 55];
 greeting('Hello', ...tup);
+*/
