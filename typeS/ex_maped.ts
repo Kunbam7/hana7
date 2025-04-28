@@ -1,3 +1,4 @@
+/*
 console.log('ex1=======================================');
 interface IUser {
     id: number;
@@ -71,3 +72,4 @@ let a: A = 0;
 let b: B = 'abc';
 let c: C = Math.random() > 0.5 ? 1 : 'abc';
 console.log('🚀 abc:', a, b, c);
+*/
