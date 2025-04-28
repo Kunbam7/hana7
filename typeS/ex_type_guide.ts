@@ -63,10 +63,10 @@ type T4 = ConstCart[keyof ConstCart];
 
 const xCart = {x: 1, y: 'str'} as const;
 type XCart = typeof xCart;
-type 
+// type 
 
 type Valueof<T> = T[keyof T];
-type t44 = Valueof<typeof ConstCart>;
+// type t44 = Valueof<typeof ConstCart>;
 type t55 = Valueof<XCart>;
 
 console.log('ex3===============================');
