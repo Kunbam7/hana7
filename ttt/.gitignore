@@ -5,3 +5,4 @@ c.txt
 dist
 /linux/data*
 /sql/mysql
+.DS_Store
