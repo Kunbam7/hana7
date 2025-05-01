@@ -62,4 +62,4 @@ select e.dept, d.dname, e.id, e.ename, e.salary
     on e.dept = DeptMaxSal.dept and e.salary = DeptMaxSal.maxsal
  order by e.dept;
       
-      
+select * from Dept; 

@@ -6,3 +6,4 @@ dist
 /linux/data*
 /sql/mysql
 .DS_Store
+tmp
