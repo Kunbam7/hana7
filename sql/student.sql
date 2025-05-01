@@ -12,7 +12,7 @@ insert Major(name) values('건축과');
 
 select * from Major;
 
-create table studentA(
+create table Student(
 	id int not null auto_increment primary key comment '학번',
     createdate timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '입학일시',
     updatedate timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '수정일시',
@@ -25,6 +25,9 @@ create table studentA(
     graduatedat date null comment '졸업일자, 재학 중일 경우 null'
 );
 
-alter table strdentA modify column name varchar(25) not null comment '학생이름';
-desc studentA;
-show create table studentA;
+alter table Student modify column name varchar(25) not null comment '학생이름';
+desc Student;
+show create table Student;
+
+alter table Student add constraint foreign key (major) references Major(id);	-- foreign key can be other table's primary key
+
