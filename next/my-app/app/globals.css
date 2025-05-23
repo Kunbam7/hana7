@@ -8,3 +8,8 @@ button {
 button:hover {
   cursor: pointer;
 }
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
