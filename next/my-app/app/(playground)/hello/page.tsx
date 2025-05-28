@@ -1,18 +1,26 @@
 // export const dynamic = 'force-dynamic';
-
-import { use } from "react";
+import { use } from 'react';
+import { getFolders } from '@/lib/folders';
+import ClientComponent from '@/components/ClientComponent';
+import ServerComponent from '@/components/ServerComponent';
 
 type Props = {
-    searchParams: Promise<{q: string}>;
+  searchParams: Promise<{ q: string }>;
+};
+export default function Hello({ searchParams }: Props) {
+  const { q } = use(searchParams);  //react use
+  // console.log('🚀 q:', q);
+
+  return (
+    <div className='border m-1 p-1'>
+      <h3 className='font-bold'>
+        Hello Page~ <span className='text-red-500'>{q}</span>
+      </h3>
+      <div className='text-xs'>{`${new Date()}`}</div>
+      <hr />
+      <ClientComponent name={'Hong'} fAction={getFolders}>
+        <ServerComponent f={getFolders} />
+      </ClientComponent>
+    </div>
+  );
 }
-
-export default function Hello({searchParams}:Props) {
-    const { q } = use(searchParams);   //react use 수업 참조
-    console.log('q: ', q);
-
-    return <>
-        <h3 className="font-bold">Hello Page<span className="text-red-500">{q}</span></h3>
-        <div>{`${new Date()}`}</div>
-    </>;
-}
-
