@@ -39,7 +39,7 @@ export default function FolderDropdown() {
                 checked={folder?.id === f.id}
                 onClick={() => setFolder(f)}
             >
-                {f  .title}
+                {f.title}
             </DropdownMenuCheckboxItem>
             ))}
         </DropdownMenuContent>

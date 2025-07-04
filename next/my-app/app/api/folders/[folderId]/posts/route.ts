@@ -1,29 +1,23 @@
-import { notFound } from 'next/navigation';
 import { NextRequest, NextResponse } from 'next/server';
-import { FolderParams, folders } from '../folderdata';
+import { FolderParams, getPostsByFolderId, posts } from '../../folderdata';
 
-// folders/1
+// folders/1/posts
 export async function GET(req: NextRequest, { params }: FolderParams) {
   const { folderId } = await params;
-  const folder = folders.find((f) => f.id === +folderId);
-  if (!folder) return notFound();
-  return NextResponse.json(folder);
+  const { searchParams } = req.nextUrl;
+  const myPosts = getPostsByFolderId(folderId);
+  const results = myPosts.filter((f) =>
+    f.title.includes(searchParams.get('q') ?? '')
+  );
+
+  return NextResponse.json(results);
 }
 
-export async function PATCH(req: NextRequest, { params }: FolderParams) {
+export async function POST(req: NextRequest, { params }: FolderParams) {
   const { folderId } = await params;
-  const folder = folders.find((f) => f.id === +folderId);
-  if (!folder) return notFound();
-
-  const { title } = await req.json();
-  folder.title = title;
-  return NextResponse.json(folder);
-}
-
-export async function DELETE(req: NextRequest, { params }: FolderParams) {
-  const { folderId } = await params;
-  const idx = folders.findIndex((f) => f.id === +folderId);
-  if (idx === -1) return notFound();
-  folders.splice(idx, 1);
-  return NextResponse.json({ msg: 'OK' });
+  const body = await req.json();
+  const id = Math.max(...posts.map((p) => p.id), 0) + 1;
+  const newer = { folder: +folderId, id, ...body };
+  posts.push(newer);
+  return NextResponse.json(newer);
 }

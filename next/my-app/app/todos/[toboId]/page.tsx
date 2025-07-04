@@ -1,4 +1,5 @@
 import { use } from 'react';
+// import { types } from 'util';
 
 type Todo = { id: number; title: string };
 
@@ -14,8 +15,17 @@ const getTodo = async (todoId: string) => {
   return data;
 };
 
+// type Params = {
+//   params: Promise<{ todoId: string}>;
+// };
+
+
 const TODOS = ['1', '100'];
 export const generateStaticParams = () => TODOS.map((todoId) => ({ todoId }));
+
+// export async function name(params:type) {
+  
+// }
 
 export default function TodoPage({
   params,

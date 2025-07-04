@@ -21,6 +21,7 @@ export default function ClientComponent({
   return (
     <>
       <h1 className='text-2xl'>Client Component: {name}</h1>
+      
       <button
         onClick={async () => {
           const folders = await fAction();
