@@ -1,7 +1,8 @@
 //TIP 코드를 <b>실행</b>하려면 <shortcut actionId="Run"/>을(를) 누르거나
 // 에디터 여백에 있는 <icon src="AllIcons.Actions.Execute"/> 아이콘을 클릭하세요.
 public class Main { //  js function decl같이 function 위치
-	public static void main(String[] args) {	// static: 장적, method영역, 메모리영역에 잡히면 변화없이 유지 -> 고정시켜야할 데이터, js에서 가 여기선 thread
+	public static void main(
+		String[] args) {    // static: 장적, method영역, 메모리영역에 잡히면 변화없이 유지 -> 고정시켜야할 데이터, js에서 가 여기선 thread
 		//TIP 캐럿을 강조 표시된 텍스트에 놓고 <shortcut actionId="ShowIntentionActions"/>을(를) 누르면
 		// IntelliJ IDEA이(가) 수정을 제안하는 것을 확인할 수 있습니다.
 		System.out.printf("Hello and welcome!");
