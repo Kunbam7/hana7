@@ -6,15 +6,15 @@ public class Ex3 {
 	static final short[] basicFee = {910, 1600, 7300};
 
 	// 강사님 방식
-	final static int[] STIMMIES = {30, 60, 80, 100};
-	final static int cutThousand = 10_000;
+	static final int[] STIMMIES = {30, 60, 80, 100};
+	static final int UNIT = 10_000;
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
 		// 국가재난금지
 		// 강사님 방식
-		System.out.print("인원 수를 입력하시오 -->>");
+		System.out.println("가족 구성원 수는?");
 		int famSize = scanner.nextInt();
 		int stimmy;
 		if (famSize < 4) {
@@ -22,7 +22,7 @@ public class Ex3 {
 		} else {
 			stimmy = STIMMIES[3];
 		}
-		System.out.printf("%d원%n", stimmy * cutThousand);
+		System.out.printf("지원금: %,d원%n", stimmy * UNIT);
 
 		//  배열쓰기
 		//		System.out.print("인원 수를 입력하시오 -->>");
