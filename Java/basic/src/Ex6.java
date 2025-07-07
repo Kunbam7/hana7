@@ -21,12 +21,14 @@ class Account1 {
             System.out.println("잔액이 부족하여 출력할 수 없음!");
             System.out.printf("%s님의 잔액은 %.1f원 입니다.%n", name, balance);
         } else {
-            System.out.printf("%s님의 잔액은 %.1f원 입니다.%n", name, balance - amnt);
+            balance = balance - amnt;
+            System.out.printf("%s님의 잔액은 %.1f원 입니다.%n", name, balance);
         }
     }
 
     public void withddraw(double amnt) {
-        System.out.printf("%s님의 잔액은 %.1f원 입니다.%n", name, balance + amnt);
+        balance = balance + amnt;
+        System.out.printf("%s님의 잔액은 %.1f원 입니다.%n", name, balance);
     }
 
     public void displsy() {
