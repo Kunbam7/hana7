@@ -26,7 +26,7 @@ public class Goods {
 			", sold=" + sold +
 			'}';
 	}
-
+	
 	public static void main(String[] args) {
 		Goods[] goods = new Goods[100];
 		int goodsIdx = 0;
@@ -47,7 +47,9 @@ public class Goods {
 			// System.out.println(g);
 			if (g == null)
 				break;
-			System.out.printf("%7s %,6d  %3d  %3d%n", g.name, g.price, g.stock, g.sold);
+			System.out.printf("%7s %,6d  %,3d  %3d%n", g.name, g.price, g.stock, g.sold);
+			// int에 %,d, or 변수 * 10_000하면 천단위로 ,찍어짐
 		}
 	}
+
 }
