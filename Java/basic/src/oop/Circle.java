@@ -20,7 +20,7 @@ public class Circle {    // package 종속 -> public, default만 가능
 	}
 
 	public String setColor(String color) {
-		this.color = color;
+		return this.color = color;
 	}
 
 	public double getArea() {
@@ -37,8 +37,7 @@ public class Circle {    // package 종속 -> public, default만 가능
 	}
 
 	public static void main(String[] args) {
-		Circle circle = new Circle(radius: 2);
+		Circle circle = new Circle(2);
 		System.out.println("circle = " + circle);
-
 	}
 }

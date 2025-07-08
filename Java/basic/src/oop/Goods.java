@@ -1,3 +1,5 @@
+package oop;
+
 import java.util.Scanner;
 
 public class Goods {
@@ -19,14 +21,14 @@ public class Goods {
 
 	@Override
 	public String toString() {
-		return "Goods{" +
+		return "oop.Goods{" +
 			"name='" + name + '\'' +
 			", price=" + price +
 			", stock=" + stock +
 			", sold=" + sold +
 			'}';
 	}
-	
+
 	public static void main(String[] args) {
 		Goods[] goods = new Goods[100];
 		int goodsIdx = 0;
