@@ -15,7 +15,7 @@ public enum Action {
 	}, 송금("^") {
 		@Override
 		public void banking(Account account, int amt) {
-			
+
 		}
 	}, 조회("*"), 종료("Q");
 
