@@ -3,41 +3,41 @@ package bank;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Account {
+public class Account_enum {
 	static int staticValue = 0;
 	private String accountNo;
 	private String name;
 	private int balance;
 
-	public Account() {
+	public Account_enum() {
 	}
 
-	public Account(String accountNo, String name) {
+	public Account_enum(String accountNo, String name) {
 		this.accountNo = accountNo;
 		this.name = name;
 	}
 
-	public Account(String accountNo, String name, int balance) {
+	public Account_enum(String accountNo, String name, int balance) {
 		this(accountNo, name);
 		this.balance = balance;
 	}
 
 	public static void printStatic() {
-		System.out.println("printStatic>>" + Account.staticValue);
+		System.out.println("printStatic>>" + Account_enum.staticValue);
 	}
 
 	public String getAccountNo() {
 		return accountNo;
 	}
 
-	public Account insert(String accountNo, String name, int balance) {
+	public Account_enum insert(String accountNo, String name, int balance) {
 		this.accountNo = accountNo;
 		this.name = name;
 		this.balance = balance;
 		return this;
 	}
 
-	public Account deposit(int amt) {
+	public Account_enum deposit(int amt) {
 		this.action(amt);
 		return this;
 	}
@@ -55,7 +55,7 @@ public class Account {
 		this.action(-amt);
 	}
 
-	public void transferTo(Account targetAccount, int amt) {
+	public void transferTo(Account_enum targetAccount, int amt) {
 		this.withdraw(amt, "송금");
 		targetAccount.deposit(amt);
 		targetAccount.checkBalance();
@@ -76,29 +76,28 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account{" +
+		return "Account_enum{" +
 			"accountNo=" + accountNo +
 			", name='" + name + '\'' +
 			", balance=" + balance +
 			'}';
 	}
 
-	public static Account findByAccountNo(Account[] accounts, String accountNo) {
-		Account account = null;
-		for (Account acc : accounts) {
+	public static Account_enum findByAccountNo(Account_enum[] accounts, String accountNo) {
+		Account_enum account = null;
+		for (Account_enum acc : accounts) {
 			if (acc.getAccountNo().equals(accountNo)) {
 				account = acc;
 			}
 		}
-
 		return account;
 	}
 
 	public static void main(String[] args) {
-		Account[] accounts = {
-			new Account().insert("1111", "Conan", 30000),
-			new Account("2222", "Rose").deposit(10000),
-			new Account("3333", "Miran", 20000),
+		Account_enum[] accounts = {
+			new Account_enum().insert("1111", "Conan", 30000),
+			new Account_enum("2222", "Rose").deposit(10000),
+			new Account_enum("3333", "Miran", 20000),
 		};
 
 		String accountsInfo = Arrays.toString(accounts)
@@ -128,9 +127,9 @@ public class Account {
 			System.out.println(accountsInfo);
 			System.out.print("계좌번호> ");
 			String accountNo = scanner.next();
-			Account targetAccount = Account.findByAccountNo(accounts, accountNo);
+			Account_enum targetAccount = Account_enum.findByAccountNo(accounts, accountNo);
 
-			Account fromAccount = null;
+			Account_enum fromAccount = null;
 			if ("^".equals(action)) {
 				while (true) {
 					System.out.print("출금할 계좌는> ");
