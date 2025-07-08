@@ -1,5 +1,3 @@
-package oop;
-
 import java.util.Scanner;
 
 public class Goods {
@@ -21,7 +19,7 @@ public class Goods {
 
 	@Override
 	public String toString() {
-		return "oop.Goods{" +
+		return "Goods{" +
 			"name='" + name + '\'' +
 			", price=" + price +
 			", stock=" + stock +

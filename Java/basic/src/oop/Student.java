@@ -45,4 +45,22 @@ public class Student extends Person {
 			", fee=" + fee +
 			']';
 	}
+
+	public static void method(Person p) {
+		try {
+			Student stu = (Student)p;
+		} catch (ClassCastException e) {
+			System.err.println(e.getMessage());
+		}
+		Student stu = (Student)p;
+		System.out.println("Downcasting!");
+	}
+
+	public static void main(String[] args) {
+		Person p1 = new Person("Hong", "Seoul");
+		Person p2 = new Student("Kim", "Busan", "xx", 2025, 2000);
+		Staff s1 = new Staff("xx", "xx", "xx", 500);
+		Student.method(p1);
+		Student.method(p2);
+	}
 }
