@@ -1,4 +1,4 @@
-//class Goods1 {
+package ex;//class Goods1 {
 //	String name;
 //	int price;
 //	int remain;
