@@ -93,6 +93,18 @@ public class Account_enum {
 		return account;
 	}
 
+	// enum accountAction {
+	// 	DEPOSIT("입금", "+"), WITHDRAW("출금", "-"), TRANSFER("송금", "^"), QUIT("종료", "Q");
+	//
+	// 	private String word;
+	// 	private String symbol;
+	//
+	// 	accountAction(String word, String symbol) {
+	// 		this.word = word;
+	// 		this.symbol = symbol;
+	// 	}
+	// }
+
 	public static void main(String[] args) {
 		Account_enum[] accounts = {
 			new Account_enum().insert("1111", "Conan", 30000),

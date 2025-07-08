@@ -108,10 +108,16 @@ public class Account {
 
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
-			System.out.print("\n+: 입금, -: 출금, ^: 송금, Q/Enter: 종료> ");
-			String action = scanner.nextLine();
-			System.out.println("action = " + action);
-			// System.out.println();
+			System.out.println();
+			System.out.print(Arrays.toString(Action.values()));
+			Action action = Action.종료;
+			String cmd = scanner.next();
+			for (Action _act : Action.values()) {
+				if (_act.isMe(cmd)) {
+					action = _act;
+				}
+			}
+
 			if (action == null || action.isBlank() || "Q".equalsIgnoreCase(action)) {
 				System.out.println("작업이 완료되었습니다.");
 				break;
