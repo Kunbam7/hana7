@@ -56,12 +56,13 @@ public class Book {
 	}
 
 	public static void main(String[] args) {
-		Book[] books = {
-			new Book("현의노래", "김훈", 12000, 120),
+		Book[] books = new Book[100];
+		// 	{
+		// 	new Book("현의노래", "김훈", 12000, 120),
+		//
+		// }
 
-		}
-
-		while(true)	{
+		while (true) {
 
 		}
 	}
