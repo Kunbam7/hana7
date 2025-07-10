@@ -1,5 +1,5 @@
-// package oopex;
-//
-// public interface Resizable {
-// 	void resize(int)
-// }
+package oopex;
+
+public interface Resizable {
+	void resize(int percent);
+}

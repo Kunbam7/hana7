@@ -1,5 +1,5 @@
 package oopex;
 
-public abstract class Shape {
-	abstract double calArea();
+abstract public class Shape {
+	abstract double calcArea();
 }

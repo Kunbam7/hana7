@@ -1,5 +1,5 @@
 package oopex;
 
-public interface GeomericObject {
+public interface GeometricObject {
 	double calcPerimeter();
 }

@@ -1,13 +1,30 @@
 package oopex;
 
-public class Rectangle {
-	double width, height = 0;
+public class Rectangle extends Shape implements GeometricObject {
+	protected double width;
+	protected double height;
 
-	double calArea() {
-		return width * height / 2;
+	public Rectangle(double width, double height) {
+		this.width = width;
+		this.height = height;
 	}
 
-	public static void main(String[] args) {
-		
+	@Override
+	double calcArea() {
+		return this.width * this.height;
 	}
+
+	@Override
+	public double calcPerimeter() {
+		return (this.width + this.height) * 2;
+	}
+
+	@Override
+	public String toString() {
+		return "Rectangle{" +
+			"width=" + width +
+			", height=" + height +
+			'}';
+	}
+
 }
