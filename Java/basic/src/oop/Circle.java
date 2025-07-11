@@ -1,6 +1,6 @@
 package oop;
 
-public class Circle {    // package 종속 -> public, default만 가능
+public class Circle implements Comparable<Circle> {    // package 종속 -> public, default만 가능
 	private double radius = 1.0;
 	private String color = "red";
 
@@ -34,6 +34,11 @@ public class Circle {    // package 종속 -> public, default만 가능
 			", color='" + color + '\'' +
 			", area='" + getArea() + '\'' +
 			'}';
+	}
+
+	@Override
+	public int compareTo(Circle c) {
+		return Double.compare(this.radius, c.radius);
 	}
 
 	public static void main(String[] args) {
