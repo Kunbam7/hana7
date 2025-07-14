@@ -14,7 +14,7 @@ public class MyStream {
 		System.out.println("짝수의 개수");
 		Stream<Integer> istream = list.stream().filter(val -> val % 2 == 0);
 		System.out.println("각 숫자를 제곱");
-		list.stream().map(val -> val * val).toList();
+		list = list.stream().map(val -> val * val).toList();
 		System.out.println("중복 제거");
 		list.stream().distinct().toList();
 		System.out.println("기본 정렬");
