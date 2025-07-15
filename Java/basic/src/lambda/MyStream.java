@@ -1,7 +1,8 @@
-package lamda;
+package lambda;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -26,7 +27,7 @@ public class MyStream {
 		System.out.println("처음 5개 건너뛰고 출력");
 		list.stream().skip(5).toList();
 		System.out.println("값이 5보다 큰 것만 출력");
-		list.stream().filter(val -> val > 5).toList();    //me
+		list.stream().filter(val -> val > 5).toList();    //me, 데이터 많음 처리속도 증가문제
 		// takeWhile, dropWhile은 순서에 영향을 받음( 첫번째가 거짓일째, 이후 확인없이 종료
 		// list.stream().takeWhile(val -> val > 5).toList();    // 1
 		// list.stream().dropWhile(val -> val <= 5).toList();    // 2
@@ -38,5 +39,12 @@ public class MyStream {
 		list.stream().mapToInt(Integer::intValue).sum();    // 2
 		System.out.println("random 5개의 평균");
 		Stream.generate(Math::random).limit(5).mapToDouble(Double::doubleValue).average();
+
+		Optional<Integer> f5 = list.stream().filter(n -> n > 50).findFirst();
+		if (f5.isPresent())
+			System.out.println("f5 = " + f5);
+		// =
+		list.stream().filter(n -> n > 50).findFirst().ifPresent(n -> System.out.println("findFirst = " + n));
+
 	}
 }

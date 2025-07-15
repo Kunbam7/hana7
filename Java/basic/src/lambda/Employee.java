@@ -1,4 +1,4 @@
-package lamda;
+package lambda;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +17,6 @@ public class Employee {
 	}
 
 	public static void main(String[] args) {
-		
+
 	}
 }
