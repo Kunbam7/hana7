@@ -45,6 +45,5 @@ public class ReflectionMain {
 				 | NoSuchMethodException | NoSuchFieldException e) {
 			e.printStackTrace(System.out);
 		}
-
 	}
 }

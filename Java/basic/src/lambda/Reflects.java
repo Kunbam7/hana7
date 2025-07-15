@@ -28,7 +28,10 @@ public class Reflects extends Parent {
 					// case Integer.class -> f.set(obj, 0);
 
 					case "String" -> f.set(obj, "");
-					// case "Boolean" -> f.set
+					case "Boolean" -> f.set(obj, false);
+					case "Long" -> f.set(obj, 0L);
+					case "Double" -> f.set(obj, 0.0);
+					default -> f.set(obj, 0);
 				}
 			} catch (IllegalAccessException e) {
 				e.printStackTrace(System.out);
