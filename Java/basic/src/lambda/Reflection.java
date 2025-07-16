@@ -1,5 +1,12 @@
 package lambda;
 
+import java.util.Arrays;
+
+import lambda.annotations.IllegalAnnotationException;
+import lambda.annotations.In;
+import lambda.annotations.Max;
+import lambda.annotations.Min;
+import lambda.annotations.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,22 +19,50 @@ import lombok.ToString;
 @Setter
 @ToString(callSuper = true)
 public class Reflection extends Parent {
+	@Min(value = 3, msg = "3글자 이상 입력하세요!")
+	@In({"Hong", "Kim", "Lee", "Choi"})
 	private String name;
+
+	@NotNull()
+	@Min(value = 5, msg = "5보다는 커야합니다!")
+	@Max(value = 10, msg = "10보다 작아야합니다!")
 	private Integer deptId;
+
+	@NotNull("필수값이에요")
+	@Min(3)
+	@Max(15)
 	private Double addr;
 	private Boolean isGuest;
-	
+
 	public Reflection(int id, String name) {
 		super(id);
 		this.name = name;
 	}
 
-	public static void main(String[] args) {
-		Reflection r = new Reflection();
-		System.out.println("r-before = " + r);
+	public static void main(String[] args) throws IllegalAnnotationException {
+		Reflection r = new Reflection(5, null);
+		System.out.println(Arrays.toString(Reflects.vaidate(r)));
+		// System.out.println("r-before = " + r);
 		Reflects.makeNotNullFields(r);
-		System.out.println("r-after = " + r);
+		// System.out.println("r-after = " + r);
 	}
+	// reflection 수업 내용
+	// private String name;
+	// private Integer deptId;
+	// private Double addr;
+	// private Boolean isGuest;
+	//
+	// public Reflection(int id, String name) {
+	// 	super(id);
+	// 	this.name = name;
+	// }
+	//
+	// public static void main(String[] args) {
+	// 	Reflection r = new Reflection();
+	// 	System.out.println("r-before = " + r);
+	// 	Reflects.makeNotNullFields(r);
+	// 	System.out.println("r-after = " + r);
+	// }
 }
 
 @AllArgsConstructor
