@@ -62,6 +62,8 @@ public class Reflects { // extends Parent {
 				messageCollector.addMessage(fname, notNull.value());
 			}
 
+			validateMinMax(f, val);
+
 			if (f.isAnnotationPresent(Min.class)) {
 				Min min = f.getAnnotation(Min.class);
 				var len = 0.0;
@@ -104,6 +106,32 @@ public class Reflects { // extends Parent {
 		return messageCollector.toStringArray();
 	}
 
+	private static String[] validateMinMax(Field f, Object val) {
+		if (!f.isAnnotationPresent(Min.class) && !f.isAnnotationPresent(Max.class))
+			return null;
+
+		var vlen = 0.0;
+		if (f.getType() == String.class) {
+			vlen = val == null ? 0 : ((String)val).length();
+		} else {
+			vlen = val == null ? 0 : (double)val;
+		}
+
+		List<String> msgs = new ArrayList<>();
+		if (f.isAnnotationPresent(Min.class)) {
+			Min min = f.getAnnotation(Min.class);
+			if (vlen < min.value())
+				msgs.add(min.msg().formatted(min.value()));
+		}
+
+		if (f.isAnnotationPresent(Max.class)) {
+			Max max = f.getAnnotation(Max.class);
+			if (vlen > max.value())
+				msgs.add(max.msg().formatted(max.value()));
+		}
+
+		return
+	}
 }
 
 class MessageCollector {
