@@ -2,7 +2,6 @@ package lambda;
 
 import java.util.Arrays;
 
-import lambda.annotations.IllegalAnnotationException;
 import lambda.annotations.In;
 import lambda.annotations.Max;
 import lambda.annotations.Min;
@@ -39,7 +38,7 @@ public class Reflection extends Parent {
 		this.name = name;
 	}
 
-	public static void main(String[] args) throws IllegalAnnotationException {
+	public static void main(String[] args) throws IllegalAccessException {
 		Reflection r = new Reflection(5, null);
 		System.out.println(Arrays.toString(Reflects.vaidate(r)));
 		// System.out.println("r-before = " + r);
