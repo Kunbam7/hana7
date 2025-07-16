@@ -2,7 +2,7 @@ package thread;
 
 public class Vote implements Runnable {
 
-	// 람다식으로 간단히 표현 가능
+	// 람다식으로 간단히 표현 가능 + 함수 이름 지정해서 호출 할 수 있게해야함
 	@Override
 	public void run() {
 		String name = Thread.currentThread().getName(); // -> 요건 굿?
@@ -36,6 +36,7 @@ public class Vote implements Runnable {
 	}
 
 	public static void main(String[] args) {
+		// Vote가 아닌, Thread 넣어야함 -> 근데 이거 차이 뭐드라ㅅㅂ;
 		Thread area1 = new Thread("제1지역구");
 		Vote area2 = new Vote();
 		Vote area3 = new Vote();
