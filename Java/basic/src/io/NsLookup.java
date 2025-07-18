@@ -9,7 +9,9 @@ public class NsLookup {
 			System.out.println("Input the domain!");
 			System.exit(0);
 		}
-		// String url = "https://hanabank.com/aaaaaaaaaaaa";
+		// String url = "hanabank.com/aaaaaaaaaaaa";
+		// String domain = url.replaceAll("https?://([^/?]+).*", "$1");    // 정규식 반드시 습득할것(back case)
+
 		String domain = args[0].replaceAll("https?://([^/?]+).*", "$1");    // 정규식 반드시 습득할것(back case)
 		System.out.println("domain = " + domain);
 
