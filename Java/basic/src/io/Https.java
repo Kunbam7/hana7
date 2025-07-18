@@ -1,5 +1,6 @@
 package io;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -8,8 +9,8 @@ import java.net.http.HttpResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Https {
-	public static void main(String[] args) {
-		String apiUrl = "https://jsonplaceholder.typicode.com/posts";
+	public static void main(String[] args) throws IOException, InterruptedException {
+		String apiUrl = "https://jsonplaceholder.typicode.com/posts/1";
 
 		HttpClient client = HttpClient.newHttpClient();
 
@@ -21,8 +22,8 @@ public class Https {
 		System.out.println("응답 헤더: " + response.headers().map());
 		System.out.println("응답 Body: " + response.body());
 
-		ObjectMapper objectmapper = new ObjectMapper();
-		Post post = objectmapper.readValue(response.body(), Post.class);
+		ObjectMapper objectMapper = new ObjectMapper();
+		Post post = objectMapper.readValue(response.body(), Post.class);
 		System.out.println("post = " + post);
 	}
 }
