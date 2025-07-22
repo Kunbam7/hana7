@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,10 +22,21 @@ import jakarta.servlet.http.HttpServletResponse;
 public class DemoApplication {
 
 	public static void main(String[] args) {
+		// HelloController helloController = new HelloController();
+		// LoginController loginController = new LoginController();
+		GenericApplicationContext applicationContext = new GenericApplicationContext();
+
+		applicationContext.registerBean(HelloController.class);
+		applicationContext.registerBean(LoginController.class);
+		applicationContext.refresh();
+
 		new TomcatServletWebServerFactory().getWebServer(servletContext -> {
 			servletContext.addServlet("hello", new HttpServlet() {
 				@Override
 				public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+					HelloController helloController = applicationContext.getBean(HelloController.class);
+					LoginController loginController = applicationContext.getBean(LoginController.class);
+
 					res.setStatus(HttpStatus.OK.value());
 
 					PrintWriter writer = res.getWriter();
@@ -32,15 +44,16 @@ public class DemoApplication {
 					if (requestURI.equals("/hello-servlet")) {
 						res.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE);
 						// super.service(req, res);
-						String name = req.getParameter("name");
-						writer.println("Hello " + name + "!");
+						// String name = req.getParameter("name");
+						writer.println(helloController.hello(req.getParameter("name")));
 					} else if (requestURI.equals("/login")) {
 						// res.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_HTML_VALUE);
 						res.setContentType("text/html");
-						writer.println("<form>");
-						writer.println("<input name='email'>");
-						writer.println("<button type='submit'>Login</button>");
-						writer.println("</form>");
+						// writer.println("<form>");
+						// writer.println("<input name='email'>");
+						// writer.println("<button type='submit'>Login</button>");
+						// writer.println("</form>");
+						writer.println(loginController.loginForm());
 					} else {
 						res.setStatus(HttpStatus.NOT_FOUND.value());
 						writer.println("404 Not Found");
@@ -51,5 +64,4 @@ public class DemoApplication {
 		}).start();
 		// SpringApplication.run(DemoApplication.class, args);
 	}
-
 }
