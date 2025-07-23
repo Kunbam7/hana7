@@ -1,5 +1,8 @@
 @baseUrl = http://localhost:8080
 
+### user - all
+GET{{baseUrl}}/users
+
 ### user - get 1
 GET{{baseUrl}}/users/1
 
@@ -12,6 +15,26 @@ Content-Type: application/json
   "email": "abc@gmail.com",
   "mobile": "010-1234-1234"
 }
+
+> {%
+    client.global.set("newerId", response.body.id);
+%}
+
+### user - update
+PATCH {{baseUrl}}/users/{{newerId}}
+Content-Type: application/json
+
+{
+    "name": "Sico",
+    "email": "abc22@gmail.com",
+    "mobile": "010-1234-5678"
+}
+
+### user - delete
+DELETE {{baseUrl}}/users/{{newerId}}
+
+### user - get one
+GET {{baseUrl}}/users/{{newerId}}
 
 ### hello
 GET {{baseUrl}}/hello
