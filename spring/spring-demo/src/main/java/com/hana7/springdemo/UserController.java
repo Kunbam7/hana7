@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hana7.springdemo.dto.User;
+import com.hana7.springdemo.service.UserService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -21,6 +22,11 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/users")
 @Log4j2
 public class UserController {
+	private UserController(UserService service) {
+		this.service = service;
+	}
+
+
 	@PostMapping("")
 	public User registry(@RequestBody @Validated User user) {
 		log.debug("user={}", user);
