@@ -7,7 +7,7 @@ import com.hana7.springdemo.dto.User;
 
 @Repository
 @Mapper
-public class UserDAO {
-	public User getUser();
-	public User insert();
+public interface UserDAO {
+	public User getUser(int id);
+	public void insert(User user);
 }

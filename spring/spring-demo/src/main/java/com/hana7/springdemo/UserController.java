@@ -22,10 +22,10 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/users")
 @Log4j2
 public class UserController {
+	private final UserService service;
 	private UserController(UserService service) {
 		this.service = service;
 	}
-
 
 	@PostMapping("")
 	public User registry(@RequestBody @Validated User user) {
@@ -51,12 +51,14 @@ public class UserController {
 	@GetMapping("/{id}")
 	public User findUser(@PathVariable("id") Integer id) {
 		log.info("GET={}", id);
-		return User.builder()
-			.id(id)
-			.name("Guest")
-			.email("abc@gmail.com")
-			.mobile("010-2222-3333")
-			.build();
+
+		return service.getUser(id);
+		// return User.builder()
+		// 	.id(id)
+		// 	.name("Guest")
+		// 	.email("abc@gmail.com")
+		// 	.mobile("010-2222-3333")
+		// 	.build();
 	}
 
 	@PatchMapping("/{id}")

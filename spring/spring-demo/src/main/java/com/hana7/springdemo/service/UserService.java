@@ -7,15 +7,17 @@ import com.hana7.springdemo.dto.User;
 
 @Service
 public class UserService {
-	private UserDAO repository;
+	private final UserDAO repository;
+
 	public UserService(UserDAO repository) {
 		this.repository = repository;
 	}
+
 	public User getUser(int id) {
 		return repository.getUser(id);
 	}
 
-	public User createUser(User user) {
-		return repository.insert(user);
+	public void createUser(User user) {
+		repository.insert(user);
 	}
 }
