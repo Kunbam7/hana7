@@ -1,0 +1,28 @@
+@baseUrl = http://localhost:8080
+
+### user - get 1
+GET{{baseUrl}}/users/1
+
+### user add
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "Kunbam",
+  "email": "abc@gmail.com",
+  "mobile": "010-1234-1234"
+}
+
+### hello
+GET {{baseUrl}}/hello
+
+### hi
+GET {{baseUrl}}/hi?name=Kun
+
+> {%
+    client.global.set("greeting", response.body);
+ %}
+
+
+### hi/{name}
+GET{{baseUrl}}/hi/{{greeting}}
