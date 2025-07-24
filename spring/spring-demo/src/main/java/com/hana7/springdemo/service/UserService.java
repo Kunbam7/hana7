@@ -1,5 +1,7 @@
 package com.hana7.springdemo.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.hana7.springdemo.dao.UserDAO;
@@ -13,11 +15,21 @@ public class UserService {
 		this.repository = repository;
 	}
 
+	// public List<User>
+
 	public User getUser(int id) {
 		return repository.getUser(id);
 	}
 
-	public void createUser(User user) {
-		repository.insert(user);
+	public void save(User user) {
+		if(user.getId() > 0) {
+			repository.update(user);
+		} else {
+			repository.insert(user);
+		}
+	}
+
+	public void remove(User user) {
+		repository.delete(user);
 	}
 }

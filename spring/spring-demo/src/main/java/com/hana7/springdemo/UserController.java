@@ -30,22 +30,23 @@ public class UserController {
 	@PostMapping("")
 	public User registry(@RequestBody @Validated User user) {
 		log.debug("user={}", user);
-		user.setId(100);
+		service.save(user);
 		return user;
 	}
 
 	@GetMapping("")
 	public List<User> findAll() {
-		List<User> list = new ArrayList<>();
-		for (int i = 0; i < 5; i++) {
-			list.add(User.builder()
-				.id(i + 1)
-				.name("Guest")
-				.email("abc" + i + "@gmail.com")
-				.mobile("010-2222-333" + i)
-				.build());
-		}
-		return list;
+		// List<User> list = new ArrayList<>();
+		// for (int i = 0; i < 5; i++) {
+		// 	list.add(User.builder()
+		// 		.id(i + 1)
+		// 		.name("Guest")
+		// 		.email("abc" + i + "@gmail.com")
+		// 		.mobile("010-2222-333" + i)
+		// 		.build());
+		// }
+		// return list;
+		return service
 	}
 
 	@GetMapping("/{id}")

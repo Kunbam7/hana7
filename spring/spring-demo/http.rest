@@ -36,6 +36,9 @@ DELETE {{baseUrl}}/users/{{newerId}}
 ### user - get one
 GET {{baseUrl}}/users/{{newerId}}
 
+### user - get 1
+GET {{baseUrl}}/users/1
+
 ### hello
 GET {{baseUrl}}/hello
 
