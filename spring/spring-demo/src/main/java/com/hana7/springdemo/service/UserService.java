@@ -1,3 +1,4 @@
+
 package com.hana7.springdemo.service;
 
 import java.util.List;
@@ -15,21 +16,22 @@ public class UserService {
 		this.repository = repository;
 	}
 
-	// public List<User>
+	public List<User> getUsers() {
+		return repository.getUsers();
+	}
 
 	public User getUser(int id) {
 		return repository.getUser(id);
 	}
 
 	public void save(User user) {
-		if(user.getId() > 0) {
+		if (user.getId() > 0)
 			repository.update(user);
-		} else {
+		else
 			repository.insert(user);
-		}
 	}
 
-	public void remove(User user) {
-		repository.delete(user);
+	public void remove(int id) {
+		repository.delete(id);
 	}
 }

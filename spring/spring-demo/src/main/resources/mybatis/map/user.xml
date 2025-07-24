@@ -6,8 +6,12 @@
         insert into User(id, name, mobile, email) values(#{id}, #{name}, #{mobile}, #{email})
     </insert>
 
-
     <select id="getUser" resultType="com.hana7.springdemo.dto.User">
+        select id, name, mobile, email
+        from User where id = #{id}
+    </select>
+
+    <select id="getUsers" resultType="com.hana7.springdemo.dto.User">
         select id, name, mobile, email
         from User
     </select>
@@ -20,5 +24,6 @@
 
     <delete id="delete" parameterType="Integer">
         delete from User
+         where id = {#id}
     </delete>
 </mapper>
