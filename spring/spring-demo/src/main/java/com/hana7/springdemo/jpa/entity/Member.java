@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
@@ -21,6 +22,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@DynamicInsert	// null의 경우, default 값 삽입
 @Data
 @Builder
 @AllArgsConstructor

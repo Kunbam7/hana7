@@ -21,7 +21,7 @@ class MemberRepositoryTest {
 		Member m = Member.builder().nickname("Kim").email("kim@gmail.com").build();
 
 		Member mbr = new Member();
-		mbr.setNickname("Hong");
+		// mbr.setNickname("Hong");
 		mbr.setEmail("hong@gmail.com");
 
 		// when
