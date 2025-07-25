@@ -1,4 +1,4 @@
-package com.hana7.springdemo.jpa.member.entity;
+package com.hana7.springdemo.jpa.entity;
 
 import java.time.LocalDateTime;
 
@@ -8,6 +8,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,8 +38,13 @@ public class Member {
 	@Email
 	private String email;
 
+	private Integer x;
+
+	@Enumerated(EnumType.STRING)
+	private BllodType bloodType;
+
 	@CreationTimestamp
-	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	@ColumnDefault("CURRENT_TIMESTAMP(6)")
 	private LocalDateTime createAt;
 
 	@UpdateTimestamp
