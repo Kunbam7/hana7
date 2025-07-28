@@ -56,5 +56,5 @@ public class Member {
 	private String passwd;
 
 	@Transient
-	private int auth = 0;
+	private int auth;
 }

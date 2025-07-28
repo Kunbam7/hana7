@@ -2,6 +2,7 @@ package com.hana7.springdemo.jpa.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -9,19 +10,13 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Commit;
-import org.springframework.test.annotation.Rollback;
 
 import com.hana7.springdemo.jpa.entity.Memo;
-
-import jakarta.transaction.Transactional;
 
 // @SpringBootTest
 // @Transactional
@@ -90,6 +85,33 @@ class MemoRepositoryTest extends RepositoryTest {
 		printList(memo10To20);
 
 		printList(repository.findByMnoBetween(2, 20, getSorting("memoText")));
+	}
+
+	@Test
+	@Order(4)
+	@Commit
+	void deleteTest() {
+		repository.deleteById(100);
+		assertFalse(repository.findById(100).isPresent());
+
+		repository.deleteByMnoBetween(81, 90);
+		assertEquals(89, repository.count());
+
+		long removeCnt = repository.removeByMnoBetween(91, 100);
+		System.out.println("removeCnt = " + removeCnt);
+		assertEquals(80, repository.count());
+	}
+
+	@Test
+	@Order(5)
+	void queryAnnotationTest() {
+		List<Memo> list = repository.getListOverDesc(70);
+		list.forEach(this::print);
+
+		List<Object[]> listSome = repository.getListSomeDesc();
+		for(Object[] objs : listSome) {
+			System.out.println(Arrays.toString(objs));
+		}
 	}
 
 	private static Sort getSorting(String field) {
