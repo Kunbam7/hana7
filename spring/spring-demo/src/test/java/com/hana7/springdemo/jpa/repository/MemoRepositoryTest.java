@@ -2,62 +2,109 @@ package com.hana7.springdemo.jpa.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.Commit;
+import org.springframework.test.annotation.Rollback;
 
 import com.hana7.springdemo.jpa.entity.Memo;
 
 import jakarta.transaction.Transactional;
 
-@SpringBootTest
-@Transactional	// 스프링 테스트하면서 데이터 안남기는 방법
-class MemoRepositoryTest {
-	@Autowired	// injection 받기
+// @SpringBootTest
+// @Transactional
+// @DataJpaTest
+// @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+// @Rollback(false)
+class MemoRepositoryTest extends RepositoryTest {
+	@Autowired
 	MemoRepository repository;
 
 	@Test
+	@Order(1)
 	void testClass() {
-		Memo m = Memo.builder().memoText("ttt").build();
+		Memo m = Memo.builder().memoText("TTT").build();
 		Memo savedM = repository.save(m);
 		assertEquals(m, savedM);
 
 		Memo foundMemo = repository.findById(savedM.getMno()).orElseThrow();
 		assertEquals(savedM, foundMemo);
-		System.out.println("foundMemo = " + foundMemo);
 
+		System.out.println("foundMemo = " + foundMemo);
 		System.out.println("repository.getClass().getName() = " + repository.getClass().getName());
 
-		foundMemo.setMemoText("New MemoText");
-		repository.save(foundMemo);	// commit 까지 진행
+		foundMemo.setMemoText("New MemoText!!");
+		repository.saveAndFlush(foundMemo);
 		System.out.println("foundMemo = " + foundMemo);
 
-		savedM.setMemoText("ssss");
+		savedM.setMemoText("SSSS");
 		repository.saveAndFlush(savedM);
-		System.out.println("foundMemo = " + foundMemo);
+		System.out.println("savedM = " + savedM);
 
 		repository.deleteById(savedM.getMno());
-		repository.findById(savedM.getMno());
 		Optional<Memo> byId = repository.findById(savedM.getMno());
 
-		// byId.ifPresent( Memo memo -> System.out.println("ById = " + memo));
+		byId.ifPresent(memo -> System.out.println("byId = " + memo));
+	}
 
-		// // give
-		// Memo m = Memo.builder().memoText("Hello").build();
-		// Memo mno = Memo.builder().memoText("World").build();
-		//
-		// //when
-		// Memo savedM = repository.save(m);
-		// Memo savedMno = repository.save(mno);
-		//
-		// System.out.println("savedM = " + savedM);
-		// System.out.println("savedMno = " + savedMno);
-		//
-		// //then
-		// Memo foundM = repository.findById(savedM.getMno()).orElseThrow();
-		// Memo foundMno = repository.findById(savedMno.getMno()).orElseThrow();
+	@Test
+	@Commit
+	@Order(2)
+	void add100Test() {
+		List<Memo> list = Stream.iterate(1, n -> n + 1).limit(100)
+			.map(n -> Memo.builder().memoText("Text" + n).build())
+			.toList();
+
+		repository.saveAll(list);
+
+		assertEquals(100, repository.count());
+	}
+
+	@Test
+	@Order(3)
+	void pagingTest() {
+		// Sort sorting = Sort.by("mno").descending();
+		Sort sorting = getSorting("mno");
+		Page<Memo> p1 = repository.findAll(getPageable(1, sorting));
+		p1.stream().forEach(this::print);
+
+		repository.findAll(getPageable(2, sorting)).stream().forEach(this::print);
+	}
+
+	@Test
+	@Order(3)
+	void queryMethodTest() {
+		List<Memo> memo10To20 = repository.findByMnoBetweenOrderByMnoDesc(10, 20);
+		printList(memo10To20);
+
+		printList(repository.findByMnoBetween(2, 20, getSorting("memoText")));
+	}
+
+	private static Sort getSorting(String field) {
+		return Sort.by(Sort.Order.desc(field));
+	}
+
+	private static Pageable getPageable(int pageNo, Sort sorting) {
+		return PageRequest.of(pageNo - 1, 10, sorting);
+	}
+
+
+	private void printList(List<Memo> list) {
+		list.forEach(this::print);
+	}
+	private void print(Memo memo) {
+		System.out.println(memo.getMno() + " - " + memo.getMemoText());
 	}
 }
