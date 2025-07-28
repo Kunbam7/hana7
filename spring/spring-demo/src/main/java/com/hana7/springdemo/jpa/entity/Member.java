@@ -53,6 +53,8 @@ public class Member {
 	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private LocalDateTime updateAt;
 
+	private String passwd;
+
 	@Transient
-	private int auth;
+	private int auth = 0;
 }
