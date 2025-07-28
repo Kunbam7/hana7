@@ -43,7 +43,7 @@ public class Member {
 	private Integer x;
 
 	@Enumerated(EnumType.STRING)
-	private BllodType bloodType;
+	private BloodType bloodType;
 
 	@CreationTimestamp
 	@ColumnDefault("CURRENT_TIMESTAMP(6)")

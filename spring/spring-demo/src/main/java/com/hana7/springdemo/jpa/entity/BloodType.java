@@ -1,5 +1,5 @@
 package com.hana7.springdemo.jpa.entity;
 
-public enum BllodType {
+public enum BloodType {
 	A, B, AB, O
 }
