@@ -31,6 +31,14 @@ class MemoRepositoryTest extends RepositoryTest {
 	@Autowired
 	MemoRepository repository;
 
+	private static Sort getSorting(String field) {
+		return Sort.by(Sort.Order.desc(field));
+	}
+
+	private static Pageable getPageable(int pageNo, Sort sorting) {
+		return PageRequest.of(pageNo - 1, 10, sorting);
+	}
+
 	@Test
 	@Order(1)
 	void testClass() {
@@ -113,7 +121,7 @@ class MemoRepositoryTest extends RepositoryTest {
 		list.forEach(this::print);
 
 		List<Object[]> listSome = repository.getListSomeDesc();
-		for(Object[] objs : listSome) {
+		for (Object[] objs : listSome) {
 			System.out.println(Arrays.toString(objs));
 		}
 	}
@@ -150,18 +158,10 @@ class MemoRepositoryTest extends RepositoryTest {
 		return null;
 	}
 
-	private static Sort getSorting(String field) {
-		return Sort.by(Sort.Order.desc(field));
-	}
-
-	private static Pageable getPageable(int pageNo, Sort sorting) {
-		return PageRequest.of(pageNo - 1, 10, sorting);
-	}
-
-
 	private void printList(List<Memo> list) {
 		list.forEach(this::print);
 	}
+
 	private void print(Memo memo) {
 		System.out.println(memo.getMno() + " - " + memo.getMemoText());
 	}

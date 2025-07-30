@@ -1,11 +1,7 @@
 package com.hana7.springdemo.jpa.entity;
 
-import java.time.LocalDateTime;
-
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,16 +14,22 @@ import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@DynamicInsert	// null의 경우, default 값 삽입
-@Data
+@DynamicInsert
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+@Getter
+@Setter
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class Member extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -36,25 +38,16 @@ public class Member {
 	@ColumnDefault("'Guest'")
 	private String nickname;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	@Email
 	private String email;
-
-	private Integer x;
 
 	@Enumerated(EnumType.STRING)
 	private BloodType bloodType;
 
-	@CreationTimestamp
-	@ColumnDefault("CURRENT_TIMESTAMP(6)")
-	private LocalDateTime createAt;
-
-	@UpdateTimestamp
-	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-	private LocalDateTime updateAt;
-
 	private String passwd;
 
 	@Transient
-	private int auth;
+	@Builder.Default
+	private int auth = 9;
 }

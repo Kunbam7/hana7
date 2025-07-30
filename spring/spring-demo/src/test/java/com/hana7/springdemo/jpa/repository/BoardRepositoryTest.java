@@ -3,30 +3,27 @@ package com.hana7.springdemo.jpa.repository;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Limit;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.test.annotation.Rollback;
 
+import com.hana7.springdemo.jpa.entity.BloodType;
 import com.hana7.springdemo.jpa.entity.Board;
 import com.hana7.springdemo.jpa.entity.BoardContent;
+import com.hana7.springdemo.jpa.entity.Member;
 
-@Rollback(false)
+// @Rollback(false)
 class BoardRepositoryTest extends RepositoryTest {
+	private static final int LIMIT = 10;
 	@Autowired
 	BoardRepository repository;
-
 	@Autowired
-	BoardContentRepository contentRepository;
-
-	private static final int LIMIT = 10;
+	MemberRepository memberRepository;
 
 	@Test
 	@Order(1)
@@ -37,8 +34,7 @@ class BoardRepositoryTest extends RepositoryTest {
 			.limit(LIMIT)
 			.map(n -> Board.builder()
 				.title("Title" + n)
-				.writer("Writer" + n)
-				// .content(new BoardContent("Content" + n))
+				.writer(getMember())
 				.build())
 			.toList();
 
@@ -60,4 +56,14 @@ class BoardRepositoryTest extends RepositoryTest {
 			PageRequest.of(0, 10, Sort.by(Sort.Order.desc("id")))).forEach(this::print);
 	}
 
+	private Member getMember() {
+		Optional<Member> memberOptional = memberRepository.findById(1L);
+
+		return memberOptional.orElseGet(() -> memberRepository.save(Member.builder()
+			.nickname("Hongxxx")
+			.email("hongxxxx@gmail.com")
+			.bloodType(BloodType.B)
+			.build()
+		));
+	}
 }

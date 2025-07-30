@@ -1,7 +1,5 @@
 package com.hana7.springdemo.jpa.dto;
 
-import java.time.LocalDateTime;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
@@ -9,7 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Builder
-@Getter @Setter
+@Getter
+@Setter
 public class BoardRequestDTO {
 	private int id;
 
@@ -17,9 +16,10 @@ public class BoardRequestDTO {
 	@Size(min = 1, max = 40)
 	private String title;
 
-	@NotBlank
-	@Size(min = 1, max = 30)
-	private String writer;
+	// @NotBlank
+	// @Size(min = 1, max = 30)
+	// private String writer;
+	private long writer;
 
 	@NotBlank
 	private String content;

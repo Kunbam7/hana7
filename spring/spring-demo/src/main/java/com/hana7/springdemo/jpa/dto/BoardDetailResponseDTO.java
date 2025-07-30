@@ -8,7 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-@Getter @Setter
+@Getter
+@Setter
 @SuperBuilder
 public class BoardDetailResponseDTO extends BoardResponseDTO {
 	private String content;

@@ -30,8 +30,11 @@ public class Reply extends BaseEntity {
 	@Column(length = 1000, nullable = false)
 	private String reply;
 
-	@Column(length = 30, nullable = false)
-	private String replyer;
+	// @Column(length = 30, nullable = false)
+	// private String replyer;
+	@ManyToOne
+	@JoinColumn(name = "replyer", nullable = false, foreignKey = @ForeignKey(name = "fk_Reply_replyer_Member"))
+	private Member replyer;
 
 	@ManyToOne
 	@JoinColumn(name = "board",

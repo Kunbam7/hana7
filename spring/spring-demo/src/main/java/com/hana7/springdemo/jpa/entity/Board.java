@@ -8,9 +8,12 @@ import org.hibernate.annotations.ColumnDefault;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -37,8 +40,11 @@ public class Board extends BaseEntity {
 	@Column(length = 40, nullable = false)
 	private String title;
 
-	@Column(length = 30, nullable = false)
-	private String writer;
+	// @Column(length = 30, nullable = false)
+	// private String writer;
+	@ManyToOne
+	@JoinColumn(name = "writer", nullable = false, foreignKey = @ForeignKey(name = "fk_Board_writer_Member"))
+	private Member writer;
 
 	@Column(nullable = false)
 	@ColumnDefault("0")
