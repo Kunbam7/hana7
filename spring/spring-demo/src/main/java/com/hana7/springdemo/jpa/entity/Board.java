@@ -1,47 +1,58 @@
 package com.hana7.springdemo.jpa.entity;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.hibernate.annotations.ColumnDefault;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@EntityListeners(AuditingEntityListener.class)
-@ToString
-@Getter
 @Builder
-@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
-public class Board {
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class Board extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long bno;
+	private int id;
 
 	@Column(length = 40, nullable = false)
 	private String title;
 
-	@Column(length = 1000, nullable = false)
-	private String content;
-
-	@Column(length = 40, nullable = false)
+	@Column(length = 30, nullable = false)
 	private String writer;
 
-	@CreatedDate
-	@Column(name = "regdate", updatable = false)
-	private LocalDateTime regDate;
+	@Column(nullable = false)
+	@ColumnDefault("0")
+	private int hit;
 
-	@Builder.Default
-	private Integer hit = 0;
+	@OneToOne(mappedBy = "board", cascade = CascadeType.ALL)
+	private BoardContent content;
+
+	@OneToMany(mappedBy = "board")
+	private List<Reply> replies = new ArrayList<>();
+
+	public void setContent(BoardContent content) {
+		this.content = content;
+		if (content != null)
+			content.setBoard(this);
+	}
 }
