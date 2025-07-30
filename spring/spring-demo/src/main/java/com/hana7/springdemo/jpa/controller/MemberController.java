@@ -9,12 +9,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hana7.springdemo.jpa.dto.MemberRequestDTO;
 import com.hana7.springdemo.jpa.dto.MemberResponseDTO;
+import com.hana7.springdemo.jpa.dto.SearchCond;
+import com.hana7.springdemo.jpa.service.MemberService;
 
 @RestController
 @RequestMapping("/members")
 public class MemberController {
+	private final MemberService service;
+
+	public MemberController(MemberService service) {
+		this.service = service;
+	}
+
 	@GetMapping()
-	List<MemberResponseDTO> findAll() {
+	List<MemberResponseDTO> findAll(SearchCond searchCond) {
+		System.out.println("searchCond = " + searchCond);
 		return List.of();
 	}
 

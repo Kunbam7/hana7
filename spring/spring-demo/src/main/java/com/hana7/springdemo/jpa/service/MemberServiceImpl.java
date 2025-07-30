@@ -2,6 +2,8 @@ package com.hana7.springdemo.jpa.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.hana7.springdemo.jpa.dao.MemberDAO;
 import com.hana7.springdemo.jpa.dto.MemberDTO;
 import com.hana7.springdemo.jpa.dto.MemberRequestDTO;
@@ -10,6 +12,7 @@ import com.hana7.springdemo.jpa.entity.Member;
 
 import lombok.RequiredArgsConstructor;
 
+@Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 	private final MemberDAO dao;

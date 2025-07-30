@@ -8,6 +8,7 @@ import org.hibernate.annotations.ColumnDefault;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,7 +29,7 @@ import lombok.ToString;
 @Builder
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"writer", "replies"})
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
@@ -42,7 +43,7 @@ public class Board extends BaseEntity {
 
 	// @Column(length = 30, nullable = false)
 	// private String writer;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "writer", nullable = false, foreignKey = @ForeignKey(name = "fk_Board_writer_Member"))
 	private Member writer;
 
@@ -53,7 +54,7 @@ public class Board extends BaseEntity {
 	@OneToOne(mappedBy = "board", cascade = CascadeType.ALL)
 	private BoardContent content;
 
-	@OneToMany(mappedBy = "board")
+	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
 	private List<Reply> replies = new ArrayList<>();
 
 	public void setContent(BoardContent content) {
