@@ -44,14 +44,23 @@ public class Board extends BaseEntity {
 	// @Column(length = 30, nullable = false)
 	// private String writer;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "writer", nullable = false, foreignKey = @ForeignKey(name = "fk_Board_writer_Member"))
+	@JoinColumn(name = "writer",
+		foreignKey = @ForeignKey(
+			name = "fk_Board_writer_Member",
+			foreignKeyDefinition = """
+					foreign key (writer)
+					   references Member(id)
+					    on DELETE cascade on UPDATE set null
+				"""
+		)
+	)
 	private Member writer;
 
 	@Column(nullable = false)
 	@ColumnDefault("0")
 	private int hit;
 
-	@OneToOne(mappedBy = "board", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "board")
 	private BoardContent content;
 
 	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
