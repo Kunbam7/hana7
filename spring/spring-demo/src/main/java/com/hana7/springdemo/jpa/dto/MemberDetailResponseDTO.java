@@ -4,11 +4,13 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
 @Getter
 @Setter
+@ToString
 public class MemberDetailResponseDTO extends MemberDTO {
 	private int auth;
 	private List<BoardDetailResponseDTO> boards;

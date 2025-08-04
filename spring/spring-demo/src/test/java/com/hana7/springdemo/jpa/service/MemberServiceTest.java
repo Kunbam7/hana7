@@ -8,12 +8,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import com.hana7.springdemo.jpa.dao.MemberDAO;
 import com.hana7.springdemo.jpa.dto.MemberDTO;
-import com.hana7.springdemo.jpa.dto.MemberDetailResponseDTO;
 import com.hana7.springdemo.jpa.entity.BloodType;
 import com.hana7.springdemo.jpa.entity.Member;
 
@@ -26,8 +24,6 @@ class MemberServiceTest {
 		.email("hong@gmail.com")
 		.bloodType(BloodType.B)
 		.build();
-
-	@MockBean
 
 	@MockitoBean
 	MemberDAO dao;
@@ -63,6 +59,6 @@ class MemberServiceTest {
 			.email(member.getEmail())
 			.bloodType(member.getBloodType()).build());
 
-		assertEquals((MemberDetailResponseDTO)memberDTO, MemberServiceImpl.toDetailDTO(member));
+		assertEquals(memberDTO, MemberServiceImpl.toDetailDTO(member));
 	}
 }
