@@ -56,6 +56,8 @@ public class MemberController {
 	}
 
 	@DeleteMapping("{id}")
+	@Tag(name = "회원삭제")
+	@Operation(summary = "delect member", description = "회원 어캐 삭제드라")
 	long remove(@PathVariable Long id) {
 		return service.remove(id);
 	}
