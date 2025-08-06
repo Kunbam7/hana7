@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -61,10 +62,14 @@ public class Member extends BaseEntity {
 
 	private List<Board> boards;
 
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+	private List<MemberImage> memberImages;
+
 	public List<Board> getBoards() {
 		if (this.boards == null)
 			return new ArrayList<>();
 
 		return this.boards;
 	}
+
 }
