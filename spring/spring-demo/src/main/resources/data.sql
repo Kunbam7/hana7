@@ -44,3 +44,10 @@ VALUES (1, 1, '2025-07-29 07:22:06', '2025-07-29 07:22:06', 2, 'Reply1'),
        (1, 8, '2025-07-29 07:22:06', '2025-07-29 07:22:06', 2, 'Reply8'),
        (1, 9, '2025-07-29 07:22:06', '2025-07-29 07:22:06', 2, 'Reply9'),
        (1, 10, '2025-07-29 07:22:06', '2025-07-29 07:22:06', 2, 'Reply10');
+
+insert into Subscriber(email, nickname, pwd, social)
+values ('sample@gmail.com', 'sub0', '$2a$10$zh74weWcJA.ZeGkSyE3JcueM5hcOkE7Z6ebzCqkFCCYd1LvmLRrwe', 0);
+
+insert into SubscriberRole(role, email)
+values (0, '0@gmail.com'),
+       (2, 'sample@gmail.com');

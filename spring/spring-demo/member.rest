@@ -1,4 +1,4 @@
-@baseUrl=http://localhost:8081
+@baseUrl=http://localhost:8080
 
 ### paging
 GET {{baseUrl}}/members?page=2&size=1

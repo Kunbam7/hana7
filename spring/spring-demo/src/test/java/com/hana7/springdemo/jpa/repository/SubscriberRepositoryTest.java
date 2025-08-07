@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ class SubscriberRepositoryTest {
 	private PasswordEncoder passwordEncoder;
 
 	@Test
+	@Order(1)
 	void addTest() {
 		int limit = 5;
 		List<Subscriber> roleList = Stream.iterate(1, n -> n + 1).limit(limit)
@@ -44,6 +46,9 @@ class SubscriberRepositoryTest {
 
 	@Test
 	void readTest() {
+		String email = "1@gmail.com";
+		Subscriber subscriber = repository.getWithRoles(email);
+		System.out.println("withRoles = " + subscriber);
 
 	}
 }
