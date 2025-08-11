@@ -27,8 +27,15 @@ public class JwtRefreshController {
 		Map<String, Object> claim = JwtUtil.validateToken(refreshToken);
 		String newAccessToken = JwtUtil.generateToken(claim, 10);
 		String newRefreshToken =
-			isSomeLeftTime(claim.get("exp")) ? JwtUtil.generateToken(claim, 60 * 24) : refreshToken;
+			isSomeLeftTime((long)claim.get("exp"))
+				? JwtUtil.generateToken(claim, 60 * 24)
+				: refreshToken;
 		return Map.of("accessToken", newAccessToken, "refreshToken", newRefreshToken);
+	}
+
+	private boolean isSomeLeftTime(long exp) {
+		long nowSec = System.currentTimeMillis() / 1000;
+		return (exp - nowSec) < 60 * 60;
 	}
 
 	private boolean didExpireToken(String accessToken) {

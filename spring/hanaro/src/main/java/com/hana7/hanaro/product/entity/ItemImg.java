@@ -1,4 +1,4 @@
-package com.hana7.hanaro.entity;
+package com.hana7.hanaro.product.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
@@ -7,14 +7,26 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class ItemImg {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private String saveDir;
+	private String fileName;
+	private String orgDir;
+	private String uploadDir;
 
 	@ManyToOne
 	@JoinColumn(name = "item",
@@ -27,5 +39,5 @@ public class ItemImg {
 				"""
 		)
 	)
-	private Item item;
+	private Item name;
 }

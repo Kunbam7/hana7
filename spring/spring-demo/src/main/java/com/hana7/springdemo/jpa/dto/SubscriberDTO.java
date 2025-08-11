@@ -40,6 +40,5 @@ public class SubscriberDTO extends User {
 		map.put("roleNames", roleNames);
 
 		return map;
-
 	}
 }
