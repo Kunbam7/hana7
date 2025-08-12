@@ -20,7 +20,9 @@ public class ItemDTO {
 	@NotNull
 	private int price;
 
-	@NotNull
+	private String description;
+
+	// @NotNull
 	private String uploadDir;
 
 	private LocalDateTime createdAt;

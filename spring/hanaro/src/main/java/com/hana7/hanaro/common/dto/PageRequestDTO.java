@@ -1,4 +1,4 @@
-package com.hana7.hanaro.product.dto;
+package com.hana7.hanaro.common.dto;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +32,4 @@ public class PageRequestDTO {
 	public Pageable getPageable(int page, Sort sort) {
 		return PageRequest.of(page - 1, listSize, sort);
 	}
-
-
 }

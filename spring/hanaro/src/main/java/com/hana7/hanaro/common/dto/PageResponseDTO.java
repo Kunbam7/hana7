@@ -1,4 +1,4 @@
-package com.hana7.hanaro.product.dto;
+package com.hana7.hanaro.common.dto;
 
 import java.util.List;
 import java.util.function.Function;

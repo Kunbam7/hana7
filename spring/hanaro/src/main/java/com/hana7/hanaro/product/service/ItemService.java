@@ -2,6 +2,8 @@ package com.hana7.hanaro.product.service;
 
 import java.util.List;
 
+import com.hana7.hanaro.common.dto.SearchCond;
+import com.hana7.hanaro.product.dto.ItemDTO;
 import com.hana7.hanaro.product.dto.ItemResponseDetailDTO;
 import com.hana7.hanaro.product.dto.ItemRequestDTO;
 import com.hana7.hanaro.product.dto.ItemResponseDTO;
@@ -11,7 +13,7 @@ public interface ItemService {
 
 	ItemResponseDTO getItemDetail(long id);
 
-	ItemResponseDetailDTO findItem(long id);
+	List<ItemDTO> findAll(SearchCond searchCond);
 
 	ItemResponseDetailDTO addItem(ItemRequestDTO requestDTO);
 
