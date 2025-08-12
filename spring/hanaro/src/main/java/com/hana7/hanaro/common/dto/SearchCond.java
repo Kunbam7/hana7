@@ -18,32 +18,33 @@ import lombok.ToString;
 public class SearchCond {
 	private String searchName;
 	private String searchEmail;
+	private String searchUserId;
 
 	@Builder.Default
 	private Integer page = 1;
 	@Builder.Default
-	private Integer size = 10;
+	private Integer listSize = 10;
 	@Builder.Default
 	private String sortField = "id";
 	@Builder.Default
 	private String sortDirection = "desc";
 
 	public boolean needSearch() {
-		return StringUtils.hasText(searchName) || StringUtils.hasText(searchEmail);
+		return StringUtils.hasText(searchName) || StringUtils.hasText(searchUserId) || StringUtils.hasText(searchEmail);
 	}
 
 	public Pageable getPager() {
 		setDefault();
 		Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortField);
 
-		return PageRequest.of(page - 1, size, sort);
+		return PageRequest.of(page - 1, listSize, sort);
 	}
 
 	private void setDefault() {
 		if (page == null)
 			page = 1;
-		if (size == null)
-			size = 5;
+		if (listSize == null)
+			listSize = 5;
 		if (sortField == null)
 			sortField = "id";
 		if (sortDirection == null)

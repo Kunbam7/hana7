@@ -10,9 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class ItemRequestDTO {
-	private long id;
-
+public class ItemAddDTO {
 	@NotBlank
 	@Size(min = 1, max = 20)
 	private String name;

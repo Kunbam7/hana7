@@ -8,19 +8,20 @@ import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hana7.hanaro.common.dto.SearchCond;
 import com.hana7.hanaro.product.dto.ItemDTO;
 import com.hana7.hanaro.product.dto.ItemRequestDTO;
 import com.hana7.hanaro.product.dto.ItemResponseDTO;
-import com.hana7.hanaro.product.entity.Item;
 import com.hana7.hanaro.product.service.ItemService;
-
-import io.swagger.v3.oas.annotations.Parameter;
 
 @RestController
 @RequestMapping("/products" )
@@ -32,8 +33,12 @@ public class ItemController {
 	}
 
 	@GetMapping
-	public List<ItemResponseDTO> getItemList(int page, int listSize) {
+	public List<ItemResponseDTO> getItemList(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int listSize) {
 		return service.getItemList(page, listSize);
+	}
+
+	List<ItemDTO> findItems(SearchCond searchCond) {
+		return service.findAll(searchCond);
 	}
 
 	@GetMapping("/{id}")
@@ -41,21 +46,16 @@ public class ItemController {
 		return service.getItemDetail(id);
 	}
 
-	@GetMapping
+	@PostMapping
 	public ItemResponseDTO addItem(@RequestBody @Validated ItemRequestDTO requestDTO) {
+
 		return service.addItem(requestDTO);
 	}
 
-	@GetMapping
-	public ItemResponseDTO editItem(@RequestBody @Validated ItemRequestDTO requestDTO) {
+	@PatchMapping("/{id}")
+	public ItemResponseDTO editItem(@PathVariable long id, @RequestBody @Validated ItemRequestDTO requestDTO) {
+		requestDTO.setId(id);
 		return service.editItem(requestDTO);
-	}
-
-	List<ItemDTO> findItems(
-		SearchCond searchCond) {
-		System.out.println("searchCond = " + searchCond.getPager());
-
-		return service.findAll(searchCond);
 	}
 
 	@DeleteMapping("/{id}")

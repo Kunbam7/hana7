@@ -108,7 +108,6 @@ public class ItemServiceImpl implements ItemService{
 
 	private Item toEntity(ItemRequestDTO dto) {
 		return Item.builder()
-			.id(dto.getId())
 			.name(dto.getName())
 			.price(dto.getPrice())
 			.stock(dto.getStock())

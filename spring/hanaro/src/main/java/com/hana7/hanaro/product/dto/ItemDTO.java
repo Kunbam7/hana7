@@ -2,6 +2,7 @@ package com.hana7.hanaro.product.dto;
 
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
@@ -11,7 +12,7 @@ import lombok.experimental.SuperBuilder;
 public class ItemDTO {
 	private Long id;
 
-	@NotNull
+	@NotBlank
 	private String name;
 
 	@NotNull
