@@ -6,13 +6,13 @@ import com.hana7.hanaro.common.dto.SearchCond;
 
 
 public interface UserService {
-	// List<UserResponseDTO> getUserList(int page, int listSize);
-	//
-	// UserResponseDTO getItemDetail(long id);
-	//
-	// List<UserDTO> findAll(SearchCond searchCond);
-	//
-	// UserResponseDetailDTO addUser(UserRequestDTO requestDTO);
-	//
-	// void removeUser(long id);
+// 	List<UserResponseDTO> getUserList(int page, int listSize);
+//
+// 	UserResponseDTO getItemDetail(long id);
+//
+// 	List<UserDTO> findAll(SearchCond searchCond);
+//
+// 	UserResponseDetailDTO addUser(UserRequestDTO requestDTO);
+//
+// 	void removeUser(long id);
 }

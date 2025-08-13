@@ -1,5 +1,8 @@
 package com.hana7.hanaro.product.entity;
 
+import com.hana7.hanaro.common.entity.BaseEntity;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +22,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ItemImg {
+public class ItemImg extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -39,5 +42,5 @@ public class ItemImg {
 				"""
 		)
 	)
-	private Item name;
+	private Item item;
 }

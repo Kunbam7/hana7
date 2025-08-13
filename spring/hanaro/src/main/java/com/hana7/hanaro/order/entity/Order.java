@@ -11,6 +11,4 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	// @ManyToMany
-
 }

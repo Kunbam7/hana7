@@ -1,7 +1,11 @@
 package com.hana7.hanaro.product.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.annotations.DynamicInsert;
 
+import com.hana7.hanaro.cart.entity.CartItem;
 import com.hana7.hanaro.common.entity.BaseEntity;
 
 import jakarta.persistence.Column;

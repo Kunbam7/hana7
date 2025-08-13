@@ -2,6 +2,7 @@ package com.hana7.hanaro.product.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Order;
@@ -11,14 +12,28 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.test.annotation.Rollback;
 
 import com.hana7.hanaro.product.entity.Item;
+import com.hana7.hanaro.product.entity.ItemImg;
 
 @Rollback(false)
 class ItemRepositoryTest extends RepositoryTest {
 	@Autowired
 	ItemRepository repository;
 
+	// @Test
+	// @Commit
+	// void imgTest() {
+	// 	Item item = repository.findById(1L).orElseThrow();
+	// 	List<ItemImg> itemImg = Stream.iterate(1, n -> n + 1)
+	// 		.limit(10)
+	// 		.map(n -> ItemImg.builder()
+	// 			.fileName("fileName" + n)
+	// 			.orgDir("2025/01/12")
+	// 			.uploadDir("2025/01/12")
+	// 			.item(item)
+	// 			.build());
+	// }
+
 	@Test
-	@Order(1)
 	void addTest() {
 		repository.saveAll(
 			Stream.iterate(1, n -> n + 1)
@@ -35,21 +50,6 @@ class ItemRepositoryTest extends RepositoryTest {
 	}
 
 	@Test
-	@Order(2)
-	void listTest() {
-		// repository.findAll(
-		//
-		// )
-	}
-
-	@Test
-	@Order(3)
-	void searchTest() {
-
-	}
-
-	@Test
-	@Order(4)
 	void editTest() {
 
 		// assertEquals(10, repository.equals());
@@ -58,7 +58,6 @@ class ItemRepositoryTest extends RepositoryTest {
 	}
 
 	@Test
-	@Order(5)
 	@Commit
 	void deleteTest() {
 		long id = 1L;
